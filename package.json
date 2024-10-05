@@ -1,0 +1,15 @@
+{
+  "name": "candlewax-games",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Resources/js/main.js",
+  "scripts": {
+    "sass-dev": "sass --watch --update --style=expanded Resources/sass/:public",
+    "sass-prod": "sass --no-source-map --style=compressed Resources/sass/:public"
+  },
+  "private": true,
+  "devDependencies": {
+    "bootstrap": "^5.3.3",
+    "sass": "^1.79.4"
+  }
+}

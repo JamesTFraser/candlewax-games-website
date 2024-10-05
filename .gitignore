@@ -1,0 +1,6 @@
+Cache/
+Logs/
+node_modules/
+vendor/
+.env
+composer.phar

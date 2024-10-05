@@ -1,0 +1,19 @@
+{
+  "name": "candlewaxgames/app",
+  "type": "project",
+  "description": "The official Candlewax Games website.",
+  "keywords": ["candlewaxgames", "mvc", "framework"],
+  "require-dev": {
+    "phpmd/phpmd": "@stable",
+    "squizlabs/php_codesniffer": "@stable"
+  },
+  "require": {
+    "ext-pdo": "*",
+    "twig/twig": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "CandlewaxGames\\": ""
+    }
+  }
+}
