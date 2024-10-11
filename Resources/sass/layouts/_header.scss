@@ -1,0 +1,23 @@
+header h1
+{
+  font-size: 4em;
+  line-height: .45em;
+}
+
+header h1 span {
+  font-size: .5em;
+}
+
+@include media-breakpoint-up(lg) {
+  header h1
+  {
+    font-size: 9.5em;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  header h1
+  {
+    font-size: 9.5em;
+  }
+}

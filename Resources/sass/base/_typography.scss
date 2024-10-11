@@ -1,0 +1,47 @@
+@font-face {
+  font-family: happy-times;
+  src: url(/public/fonts/happy-times.otf);
+}
+
+@font-face {
+  font-family: source-serif-pro;
+  src: url(/public/fonts/sourceserifpro-regular.ttf);
+}
+
+h1 {
+  font-family: happy-times, sans, sans-serif;
+}
+
+h2,
+p,
+a {
+  font-family: source-serif-pro, sans, sans-serif;
+}
+
+h1,
+h2,
+p,
+a {
+  color: $primary;
+}
+
+h1,
+h2 {
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.53rem;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.initial::first-letter {
+  font-size: 400%;
+  float: left;
+  line-height: 0.8em;
+  font-family: source-serif-pro, sans, sans-serif;
+  padding: 5px 5px 2px 0;
+}

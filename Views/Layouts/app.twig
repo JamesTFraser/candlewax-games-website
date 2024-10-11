@@ -7,11 +7,14 @@
         <title>Candlewax Games</title>
     </head>
     <body>
+        <video autoplay="" muted="" loop="" class="position-fixed top-50 start-50 translate-middle z-n1">
+            <source src="/public/videos/background.mp4" type="video/mp4">
+        </video>
         {% include "Layouts/header.twig" %}
-        <div class="container">
-            {% include "Layouts/navigation.twig" %}
+        {% include "Layouts/navigation.twig" %}
+        <div class="container-fluid container-lg pt-2 bg-image-center">
             {% block content %}{% endblock %}
-            {% include "Layouts/footer.twig" %}
         </div>
+        {% include "Layouts/footer.twig" %}
     </body>
 </html>
