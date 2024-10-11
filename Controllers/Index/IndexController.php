@@ -15,7 +15,7 @@ class IndexController extends BaseController
      */
     public function indexAction(): Response
     {
-        return new Response('Index/index/index', ['name' => 'Candlewax']);
+        return new Response('Index/index', ['name' => 'Candlewax']);
     }
 
     /**
@@ -23,6 +23,6 @@ class IndexController extends BaseController
      */
     public function fourZeroFourAction(): Response
     {
-        return new Response('Index/index/404');
+        return new Response('Index/404');
     }
 }
