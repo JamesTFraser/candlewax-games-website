@@ -2,10 +2,10 @@
   "name": "candlewax-games",
   "version": "1.0.0",
   "description": "",
-  "main": "Resources/js/main.js",
+  "main": "Resources/JS/main.js",
   "scripts": {
-    "sass-dev": "sass --watch --update --style=expanded Resources/sass/:public",
-    "sass-prod": "sass --no-source-map --style=compressed Resources/sass/:public"
+    "sass-dev": "sass --watch --update --style=expanded Resources/Sass/:public",
+    "sass-prod": "sass --no-source-map --style=compressed Resources/Sass/:public"
   },
   "private": true,
   "devDependencies": {
