@@ -2,5 +2,6 @@
 
 include_once "vendor/autoload.php";
 
-$bootstrapper = new CandlewaxGames\Bootstrap\Bootstrapper();
+$diContainer = new CandlewaxGames\Bootstrap\DIContainer();
+$bootstrapper = $diContainer->getDI()->get(CandlewaxGames\Bootstrap\Bootstrapper::class);
 $bootstrapper->init();

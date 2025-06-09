@@ -1,6 +1,7 @@
 /* Theme variables */
 $primary: #2b1100;
-$secondary: #c06d00;
+$primary-faded: rgba(43, 17, 0, 0.3);
+$secondary: #ffcd98;
 
 $container-max-widths: (
         sm: 540px,
@@ -9,3 +10,25 @@ $container-max-widths: (
         xl: 960px,
         xxl: 960px
 );
+
+/* Input Fields */
+$input-border-radius: 0;
+$input-color: $primary;
+$input-bg: transparent;
+$input-border-color: $primary;
+$input-disabled-bg: transparent;
+$input-disabled-opacity: 1;
+$border-width: 1px;
+
+input {
+  background: url(/public/images/quill-ink.svg) no-repeat;
+}
+
+.form-label {
+  font-weight: bold !important;
+  font-family: happy-times, sans, sans-serif;
+}
+
+.border-bottom-faded {
+  border-bottom: $border-width solid $primary-faded !important;
+}

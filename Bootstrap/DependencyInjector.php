@@ -7,44 +7,17 @@ use ReflectionClass;
 use ReflectionException;
 
 /**
- * Takes a class name and attempts to recursively resolve of its dependencies before returning an instance of the class.
+ * Takes a class name and attempts to recursively resolve all of its dependencies before returning an instance of the
+ * class.
  */
 class DependencyInjector
 {
-    /**
-     * @var DependencyInjector|null The singleton object of this class.
-     */
-    private static ?DependencyInjector $instance = null;
     /**
      * @var array An array of factory functions for resolving class dependencies that cannot be resolved automatically
      * (e.g a Database class that requires credentials for its constructor params.) Formatted as key = the class name
      * and value = a callable to the factory function.
      */
     private array $dependencies = [];
-
-    private function __construct()
-    {
-    }
-
-    private function __clone()
-    {
-    }
-
-    /**
-     * Returns a reference to this classes singleton object.
-     *
-     * The object will be created the first time this method is called and returned on future calls.
-     *
-     * @return DependencyInjector The singleton object.
-     */
-    public static function getInstance(): DependencyInjector
-    {
-        if (self::$instance === null) {
-            self::$instance = new DependencyInjector();
-        }
-
-        return self::$instance;
-    }
 
     /**
      * Registers a factory function for the class defined by $class.
@@ -113,7 +86,7 @@ class DependencyInjector
         foreach ($parameters as $parameter) {
             // If the parameter type is a built-in type (not a class, interface or trait) we can not resolve it.
             if ($parameter->getType()->isBuiltin()) {
-                throw new Exception("Cannot resolve primitive type for parameter {$parameter->name}");
+                throw new Exception("Cannot resolve primitive type for parameter $parameter->name");
             }
 
             // Resolve the dependency recursively.

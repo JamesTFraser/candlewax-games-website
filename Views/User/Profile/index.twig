@@ -1,0 +1,13 @@
+{% extends 'Layouts/app.twig' %}
+{% block content %}
+    <div class="row">
+        <div class="col col-3">
+            <img src="/public/images/profile/{{ user.image }}" style="width: 100%;" />
+        </div>
+        <div class="col col-9">
+            <h2>{{ user.username }}</h2>
+            {% if user.id == session.userId %}<p class="m-0 mb-1"><a href="/user/account/edit">Edit</a> <a href="/user/account/logout">Logout</a></p> {% endif %}
+            <p>{{ user.bio }}</p>
+        </div>
+    </div>
+{% endblock %}

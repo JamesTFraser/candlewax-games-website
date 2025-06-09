@@ -29,10 +29,7 @@ class View
     {
         // Initialise the template engine.
         $loader = new FilesystemLoader(ROOT . 'Views');
-        $this->engine = new Environment(
-            $loader,
-            ['cache' => ROOT . 'Cache/twig', 'debug' => DEVELOPMENT_ENVIRONMENT]
-        );
+        $this->engine = new Environment($loader, ['cache' => ROOT . 'Cache/twig', 'debug' => DEVELOPMENT_ENVIRONMENT]);
     }
 
     /**
@@ -48,6 +45,9 @@ class View
      */
     public function render(string $templatePath, array $data = []): string
     {
+        // Pass the session along to the view.
+        $data['session'] = $_SESSION;
+
         return $this->engine->render($templatePath . $this->templateSuffix, $data);
     }
 }

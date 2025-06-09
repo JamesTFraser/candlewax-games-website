@@ -2,7 +2,7 @@
 
 namespace CandlewaxGames\Bootstrap;
 
-use CandlewaxGames\Services\View;
+use CandlewaxGames\Database\Database;
 use Exception;
 use ReflectionException;
 
@@ -12,6 +12,15 @@ use ReflectionException;
  */
 class Bootstrapper
 {
+    private DIContainer $diContainer;
+    private Database $database;
+
+    public function __construct(DIContainer $diContainer, Database $database)
+    {
+        $this->diContainer = $diContainer;
+        $this->database = $database;
+    }
+
     /**
      * Loads the env variables, sets the current environment and calls the handleRequest method of the Router class.
      *
@@ -35,11 +44,16 @@ class Bootstrapper
         // Set whether to display errors based on the current environment.
         $this->setEnvironment();
 
-        // Initialise the dependency injector and register the dependency factory functions.
-        $injector = DependencyInjector::getInstance();
-        $this->registerFactories($injector);
+        // Connect to the database.
+        $this->database->connect(
+            getenv('DATABASE_HOST'),
+            getenv('DATABASE_NAME'),
+            getenv('DATABASE_USER'),
+            getenv('DATABASE_PASSWORD')
+        );
 
         // Parse the url and call the corresponding controller action method.
+        $injector = $this->diContainer->getDI();
         $router = $injector->get(Router::class);
         $router->handleRequest();
     }
@@ -97,29 +111,17 @@ class Bootstrapper
      */
     private function setEnvironment(): void
     {
-        // If development environment is on, display errors to the user, else write them to an error log.
+        // If development environment is on, display errors to the user.
         if (DEVELOPMENT_ENVIRONMENT) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
-        } else {
-            error_reporting(0);
-            ini_set('display_errors', 'Off');
-            ini_set('log_errors', 'On');
-            ini_set('error_log', ROOT . '/Logs/PHP/error.log');
+            return;
         }
-    }
 
-    /**
-     * Registers factory functions for classes whose dependencies cannot be resolved automatically.
-     *
-     * @param DependencyInjector $injector The class for which to register the factory functions with.
-     * @return void
-     */
-    private function registerFactories(DependencyInjector $injector): void
-    {
-        $injector->set(Router::class, function () {
-            $injector = DependencyInjector::getInstance();
-            return new Router($injector->get(View::class), $injector);
-        });
+        // If development environment is off, write errors to an error log.
+        error_reporting(0);
+        ini_set('display_errors', 'Off');
+        ini_set('log_errors', 'On');
+        ini_set('error_log', ROOT . '/Logs/PHP/error.log');
     }
 }
