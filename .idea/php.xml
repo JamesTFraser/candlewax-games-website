@@ -2,14 +2,19 @@
 <project version="4">
   <component name="MessDetector">
     <phpmd_settings>
-      <MessDetectorConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpmd" timeout="10000" />
+      <MessDetectorConfiguration tool_path="$PROJECT_DIR$/vendor/bin/phpmd" timeout="20000" />
+      <phpmd_by_interpreter asDefaultInterpreter="true" interpreter_id="f07daad5-0b17-4a84-96dd-9285238767b8" tool_path="E:\Webserver\nginx-1.27.1\html\candlewax-games\vendor\bin\phpmd" timeout="30000" />
     </phpmd_settings>
   </component>
   <component name="MessDetectorOptionsConfiguration">
-    <option name="codeSize" value="true" />
-    <option name="design" value="true" />
-    <option name="naming" value="true" />
-    <option name="unusedCode" value="true" />
+    <option name="customRulesets">
+      <list>
+        <RulesetDescriptor>
+          <option name="name" value="Custom Ruleset" />
+          <option name="path" value="$PROJECT_DIR$/Config/Dev/PHPMD/ruleset.xml" />
+        </RulesetDescriptor>
+      </list>
+    </option>
     <option name="transferred" value="true" />
   </component>
   <component name="PHPCSFixerOptionsConfiguration">
@@ -20,9 +25,15 @@
     <option name="highlightLevel" value="WARNING" />
     <option name="transferred" value="true" />
   </component>
+  <component name="PhpCSFixer">
+    <phpcsfixer_settings>
+      <phpcs_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="f07daad5-0b17-4a84-96dd-9285238767b8" timeout="30000" />
+    </phpcsfixer_settings>
+  </component>
   <component name="PhpCodeSniffer">
     <phpcs_settings>
-      <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="MySource;PEAR;PSR1;PSR12;PSR2;Squiz;Zend" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" />
+      <PhpCSConfiguration beautifier_path="$PROJECT_DIR$/vendor/bin/phpcbf" standards="MySource;PEAR;PSR1;PSR12;PSR2;Squiz;Zend" tool_path="$PROJECT_DIR$/vendor/bin/phpcs" timeout="20000" />
+      <phpcs_by_interpreter asDefaultInterpreter="true" interpreter_id="f07daad5-0b17-4a84-96dd-9285238767b8" beautifier_path="E:\Webserver\nginx-1.27.1\html\candlewax-games\vendor\bin\phpcbf" standards="MySource;PEAR;PSR1;PSR12;PSR2;Squiz;Zend" tool_path="E:\Webserver\nginx-1.27.1\html\candlewax-games\vendor\bin\phpcs" timeout="30000" />
     </phpcs_settings>
   </component>
   <component name="PhpIncludePathManager">
@@ -43,9 +54,40 @@
       <path value="$PROJECT_DIR$/vendor/squizlabs/php_codesniffer" />
       <path value="$PROJECT_DIR$/vendor/twig/twig" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
+  <component name="PhpStan">
+    <PhpStan_settings>
+      <phpstan_by_interpreter asDefaultInterpreter="true" interpreter_id="f07daad5-0b17-4a84-96dd-9285238767b8" timeout="60000" />
+    </PhpStan_settings>
+  </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
   </component>
@@ -53,6 +95,11 @@
     <phpunit_settings>
       <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" />
     </phpunit_settings>
+  </component>
+  <component name="Psalm">
+    <Psalm_settings>
+      <psalm_fixer_by_interpreter asDefaultInterpreter="true" interpreter_id="f07daad5-0b17-4a84-96dd-9285238767b8" timeout="60000" />
+    </Psalm_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />

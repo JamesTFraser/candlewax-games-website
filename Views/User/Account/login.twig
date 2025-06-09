@@ -1,0 +1,78 @@
+{% extends "Layouts/app.twig" %}
+{% block content %}
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col col-md-6">
+            <h2 class="mb-2">Login</h2>
+            <form action="/user/account/login" method="post">
+                <input type="hidden" name="login" value="true" />
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-2 p-0 text-end">
+                        <label for="email" class="form-label mb-0 text-primary">Email</label>
+                    </div>
+                    <div class="col-10 ps-1">
+                        <input id="email" type="email" name="email" class="form-control border-0 p-0 ps-4" value="{{ post.login ? post.email : '' }}" required />
+                    </div>
+                </div>
+                {% if post.login %} {% for error in errors.email %} <p class="text-danger">{{ error }}</p> {% endfor %} {% endif %}
+
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-2 p-0 text-end">
+                        <label for="password" class="form-label mb-0 text-primary">Password</label>
+                    </div>
+                    <div class="col-10 ps-1">
+                        <input id="password" type="password" name="password" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% if post.login %} {% for error in errors.password %} <p class="text-danger">{{ error }}</p> {% endfor %} {% endif %}
+
+                <div class="row mb-4 mx-0 align-items-end border-bottom-faded d-none d-md-flex" style="height: 26px;"></div>
+                <div class="row mb-4 mx-0 align-items-end border-bottom-faded d-none d-md-flex" style="height: 26px;"></div>
+
+                <button type="submit" class="btn btn-primary w-100 text-secondary fw-bold mb-4">Login</button>
+            </form>
+        </div>
+        <div class="col col-md-6">
+            <h2 class="mb-2">Register for an account</h2>
+            <form action="/user/account/register" method="post">
+                <input type="hidden" name="register" value="true" />
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-2 p-0 text-end">
+                        <label for="username" class="form-label mb-0 text-primary">Username</label>
+                    </div>
+                    <div class="col-10 ps-1">
+                        <input id="username" type="text" name="username" class="form-control border-0 p-0 ps-4" value="{{ post.register ? post.username : '' }}" required />
+                    </div>
+                </div>
+                {% if post.register %} {% for error in errors.username %} <p class="text-danger">{{ error }}</p> {% endfor %} {% endif %}
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-2 p-0 text-end">
+                        <label for="email" class="form-label mb-0 text-primary">Email</label>
+                    </div>
+                    <div class="col-10 ps-1">
+                        <input id="email" type="email" name="email" class="form-control border-0 p-0 ps-4" value="{{ post.register ? post.email : '' }}" required />
+                    </div>
+                </div>
+                {% if post.register %} {% for error in errors.email %} <p class="text-danger">{{ error }}</p> {% endfor %} {% endif %}
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-2 p-0 text-end">
+                        <label for="password" class="form-label mb-0 text-primary">Password</label>
+                    </div>
+                    <div class="col-10 ps-1">
+                        <input id="password" type="password" name="password" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% if post.register %} {% for error in errors.password %} <p class="text-danger">{{ error }}</p> {% endfor %} {% endif %}
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-2 p-0 text-end">
+                        <label for="confirm" class="form-label mb-0 text-primary">Confirm</label>
+                    </div>
+                    <div class="col-10 ps-1">
+                        <input id="confirm" type="password" name="confirm" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% if post.register %} {% for error in errors.confirm %} <p class="text-danger">{{ error }}</p> {% endfor %} {% endif %}
+                <button type="submit" class="btn btn-primary w-100 text-secondary fw-bold mb-4">Register</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

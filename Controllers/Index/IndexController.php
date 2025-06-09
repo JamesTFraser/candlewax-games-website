@@ -3,7 +3,6 @@
 namespace CandlewaxGames\Controllers\Index;
 
 use CandlewaxGames\Controllers\BaseController;
-use CandlewaxGames\Controllers\Response;
 
 /**
  * The homepage controller.
@@ -11,18 +10,18 @@ use CandlewaxGames\Controllers\Response;
 class IndexController extends BaseController
 {
     /**
-     * @return Response Contains the view path and the variables to pass to it.
+     * @return array Contains the view path and the variables to pass to it.
      */
-    public function indexAction(): Response
+    public function indexAction(): array
     {
-        return new Response('Index/index', ['name' => 'Candlewax']);
+        return $this->response->render('Index/index');
     }
 
     /**
-     * @return Response Contains the view path and the variables to pass to it.
+     * @return array Contains the view path and the variables to pass to it.
      */
-    public function fourZeroFourAction(): Response
+    public function fourZeroFourAction(): array
     {
-        return new Response('Index/404');
+        return $this->response->render('Index/404');
     }
 }

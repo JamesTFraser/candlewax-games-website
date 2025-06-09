@@ -13,6 +13,7 @@
         {% include "Layouts/header.twig" %}
         {% include "Layouts/navigation.twig" %}
         <div class="container-fluid container-lg pt-2 bg-image-center">
+            {% include "Layouts/notification.twig" %}
             {% block content %}{% endblock %}
         </div>
         {% include "Layouts/footer.twig" %}

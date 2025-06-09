@@ -5,7 +5,7 @@
             <a class="display-6 text-decoration-none" href="/blog">Blog</a>
             <a class="display-6 text-decoration-none" href="/games">Games</a>
             <a class="display-6 text-decoration-none" href="/forum">Forum</a>
-            <a class="display-6 text-decoration-none" href="/account">Account</a>
+            <a class="display-6 text-decoration-none" href="{% if session.username %}/u/{{ session.username }}{% else %}/user/account/login{% endif %}">Account</a>
             <img src="/public/images/navigation-right.png" alt="">
         </div>
     </div>

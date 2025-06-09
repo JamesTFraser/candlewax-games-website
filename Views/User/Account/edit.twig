@@ -1,0 +1,105 @@
+{% extends "Layouts/app.twig" %}
+{% block content %}
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col col-md-4">
+            <h2 class="mb-2">Profile</h2>
+            <form action="/user/profile/update" method="post" enctype="multipart/form-data">
+                <img src="/public/images/profile/{{ profile.image }}" class="w-100" />
+                <div class="row mb-1 mx-0">
+                    <div class="col p-0">
+                        <label for="image" class="form-label mb-0 text-primary">Upload new profile image</label>
+                    </div>
+                </div>
+                <div class="row mb-4 mx-0">
+                    <div class="col p-0">
+                        <input type="file" name="image" id="image">
+                    </div>
+                </div>
+                {% for error in errors.image %} <p class="text-danger">{{ error }}</p> {% endfor %}
+
+                <div class="row mb-1 mx-0">
+                    <div class="col p-0">
+                        <label for="bio" class="form-label mb-0 text-primary">Bio</label>
+                    </div>
+                </div>
+                <div class="row mb-4 mx-0">
+                    <div class="col p-0">
+                        <textarea id="bio" type="text" name="bio" rows="10" class="form-control border border-primary">{{ profile.bio }}</textarea>
+                    </div>
+                </div>
+                {% for error in errors.bio %} <p class="text-danger">{{ error }}</p> {% endfor %}
+                <button type="submit" class="btn btn-primary w-100 text-secondary fw-bold mb-4">Update Profile</button>
+            </form>
+        </div>
+        <div class="col col-md-8">
+            <h2 class="mb-2">Account Details</h2>
+            <form action="/user/account/update" method="post">
+                <input type="hidden" name="login" value="true" />
+
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-3 p-0 text-end">
+                        <label for="username" class="form-label mb-0 text-primary">Username</label>
+                    </div>
+                    <div class="col-9 ps-1">
+                        <input id="username" type="text" name="username" class="form-control border-0 p-0 ps-4" value="{{ user.username }}" required />
+                    </div>
+                </div>
+                {% for error in errors.username %} <p class="text-danger">{{ error }}</p> {% endfor %}
+
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-3 p-0 text-end">
+                        <label for="email" class="form-label mb-0 text-primary">Email</label>
+                    </div>
+                    <div class="col-9 ps-1">
+                        <input id="email" type="email" name="email" class="form-control border-0 p-0 ps-4" value="{{ user.email }}" required />
+                    </div>
+                </div>
+                {% for error in errors.email %} <p class="text-danger">{{ error }}</p> {% endfor %}
+
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-3 p-0 text-end">
+                        <label for="password" class="form-label mb-0 text-primary">Confirm Password</label>
+                    </div>
+                    <div class="col-9 ps-1">
+                        <input id="password" type="password" name="password" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% for error in errors.password %} <p class="text-danger">{{ error }}</p> {% endfor %}
+
+                <button type="submit" class="btn btn-primary w-100 text-secondary fw-bold mb-4">Update Account</button>
+            </form>
+            <h2 class="mb-2">Change Password</h2>
+            <form action="/user/account/updatepassword" method="post">
+                <input type="hidden" name="register" value="true" />
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-3 p-0 text-end">
+                        <label for="old_password" class="form-label mb-0 text-primary">Old Password</label>
+                    </div>
+                    <div class="col-9 ps-1">
+                        <input id="old_password" type="password" name="old_password" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% for error in errors.old_password %} <p class="text-danger">{{ error }}</p> {% endfor %}
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-3 p-0 text-end">
+                        <label for="new_password" class="form-label mb-0 text-primary">New Password</label>
+                    </div>
+                    <div class="col-9 ps-1">
+                        <input id="new_password" type="password" name="new_password" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% for error in errors.new_password %} <p class="text-danger">{{ error }}</p> {% endfor %}
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-3 p-0 text-end">
+                        <label for="new_confirm" class="form-label mb-0 text-primary">Confirm New Password</label>
+                    </div>
+                    <div class="col-9 ps-1">
+                        <input id="new_confirm" type="password" name="new_confirm" class="form-control border-0 p-0 ps-4" required />
+                    </div>
+                </div>
+                {% for error in errors.new_confirm %} <p class="text-danger">{{ error }}</p> {% endfor %}
+                <button type="submit" class="btn btn-primary w-100 text-secondary fw-bold mb-4">Change Password</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
