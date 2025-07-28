@@ -1,4 +1,4 @@
-# Candlewax Games Eebsite
+# Candlewax Games Website
 The official website of Candlewax Games. Made with a bespoke PHP 8.3 framework implementing Twig 3 and Bootstrap 5.
 
 The codebase is written to the PSR-12 standard and is both PHP Mess Detector and PHP Code Sniffer compliant (with a couple of exceptions which can be reviewed at /Config/Dev/PHPMD/ruleset.xml)
