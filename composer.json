@@ -11,7 +11,9 @@
   "require": {
     "ext-pdo": "*",
     "twig/twig": "3.*",
-    "ext-fileinfo": "*"
+    "ext-fileinfo": "*",
+    "twig/string-extra": "^3.21",
+    "ext-iconv": "*"
   },
   "autoload": {
     "psr-4": {

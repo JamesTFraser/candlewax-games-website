@@ -2,6 +2,8 @@
 
 namespace CandlewaxGames\Bootstrap;
 
+use CandlewaxGames\Controllers\Discussion\BlogController;
+use CandlewaxGames\Controllers\Discussion\PostController;
 use CandlewaxGames\Controllers\Index\IndexController;
 use CandlewaxGames\Controllers\User\ProfileController;
 use CandlewaxGames\Services\ParamResolver;
@@ -21,7 +23,12 @@ use Twig\Error\SyntaxError;
 class Router
 {
     private array $routes = [
-        '/u/{username}' => [ProfileController::class, 'indexAction']
+        '/u/{username}' => [ProfileController::class, 'indexAction'],
+        '/p/{slug}' => [PostController::class, 'viewAction'],
+        '/discussion' => [PostController::class, 'indexAction'],
+        '/discussion/{pageNumber}' => [PostController::class, 'indexAction'],
+        '/blog' => [BlogController::class, 'indexAction'],
+        '/blog/{pageNumber}' => [BlogController::class, 'indexAction']
     ];
 
     /**
@@ -198,7 +205,7 @@ class Router
                 // If the current part is a parameter, record its name and value.
                 if ($routeUrlArray[$i][0] == '{') {
                     $paramName = str_replace(['{', '}'], '', $routeUrlArray[$i]);
-                    $params[$paramName] = $requestUrlArray[$i];
+                    $params[$paramName] = $this->resolver->typeCastFromString($requestUrlArray[$i]);
                     continue;
                 }
 

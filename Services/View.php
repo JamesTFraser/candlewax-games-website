@@ -2,11 +2,13 @@
 
 namespace CandlewaxGames\Services;
 
+use CandlewaxGames\Config\Twig\Extensions\TimeAgo;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
+use Twig\Extra\String\StringExtension;
 
 /**
  * Contains the templating engine used to render the views located in the /Views folder.
@@ -30,6 +32,10 @@ class View
         // Initialise the template engine.
         $loader = new FilesystemLoader(ROOT . 'Views');
         $this->engine = new Environment($loader, ['cache' => ROOT . 'Cache/twig', 'debug' => DEVELOPMENT_ENVIRONMENT]);
+
+        // Resister the extensions.
+        $this->engine->addExtension(new TimeAgo());
+        $this->engine->addExtension(new StringExtension());
     }
 
     /**

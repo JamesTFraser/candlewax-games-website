@@ -16,7 +16,7 @@ class EntityTest extends TestCase
 
         // Update the columns.
         foreach ($data as $key => $value) {
-            $entity->setColumn($key, $value);
+            $entity->$key = $value;
         }
 
         // Retrieve the newly modified columns.
@@ -32,8 +32,8 @@ class EntityTest extends TestCase
             $this->assertEquals($value, $columns[$key]);
         }
 
-        // Make sure we are unable to set a new array key using Entity->SetColumn.
+        // The public properties of the Entity represent column's so make sure we are unable to add a new one.
         $this->expectException(Exception::class);
-        $entity->setColumn('test', 'test');
+        $entity->test = 'test';
     }
 }
