@@ -1,0 +1,31 @@
+{% extends "Layouts/app.twig" %}
+{% block content %}
+    <div class="row row-cols-1">
+        <div class="col">
+            <h2 class="mb-2">Create New Post</h2>
+            <form action="/discussion/post/store" method="post">
+                <div class="row mb-4 mx-0 align-items-end border-bottom border-primary">
+                    <div class="col-1 p-0 text-end">
+                        <label for="title" class="form-label mb-0 text-primary">Title</label>
+                    </div>
+                    <div class="col-11 ps-1">
+                        <input id="title" type="text" name="title" class="form-control border-0 p-0 ps-4" value="{{ post.title }}" required />
+                    </div>
+                </div>
+                {% for error in errors.title %} <p class="text-danger">{{ error }}</p> {% endfor %}
+                <div class="row mb-1 mx-0">
+                    <div class="col-1 p-0 text-end">
+                        <label for="content" class="form-label mb-0 text-primary">Content</label>
+                    </div>
+                </div>
+                <div class="row mb-4 mx-0">
+                    <div class="col p-0">
+                        <textarea id="content" type="text" name="content" rows="10" class="form-control border border-primary">{{ post.content }}</textarea>
+                    </div>
+                </div>
+                {% for error in errors.content %} <p class="text-danger">{{ error }}</p> {% endfor %}
+                <button type="submit" class="btn btn-primary w-100 text-secondary fw-bold mb-4">Create Post</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -128,8 +128,8 @@ class User
     public function getProfileInfo(string $username): array
     {
         $user = $this->database->readLeftJoin(
-            ['users', 'user_profiles'],
-            ['users.id', 'user_profiles.user_id'],
+            'users',
+            [$this->profileTable => ['id', 'user_id']],
             ['users.username' => $username]
         )[0] ?? null;
 
@@ -165,7 +165,7 @@ class User
 
         // Update the Entity.
         foreach ($columns as $name => $value) {
-            $entity->setColumn($name, $value);
+            $entity->$name = $value;
         }
         $this->database->update([$entity]);
         return true;

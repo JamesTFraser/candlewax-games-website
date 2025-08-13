@@ -101,4 +101,27 @@ class Validator
     {
         return ctype_alnum($value);
     }
+
+    public function stringToSlug(string $string): string
+    {
+        // Make the string lowercase.
+        $string = strtolower($string);
+
+        // Convert any special characters to ASCII.
+        $string = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
+
+        // Remove all characters excluding letters, numbers, hyphens and spaces.
+        $string = preg_replace('~[^\pL\d\s-]+~u', '', $string);
+
+        // replace spaces with hyphens.
+        $string = preg_replace('~\s+~', '-', $string);
+
+        // Remove hyphens from the start and end of the string.
+        $string = trim($string, '-');
+
+        // Remove any duplicate hyphens.
+        $string = preg_replace('~-+~', '-', $string);
+
+        return $string;
+    }
 }

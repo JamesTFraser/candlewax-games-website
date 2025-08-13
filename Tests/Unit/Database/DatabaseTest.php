@@ -90,8 +90,8 @@ class DatabaseTest extends TestCase
             $entities[$i] = new Entity('test', $i + 1, $insertRows[$i]);
 
             // Update the Entities columns.
-            $entities[$i]->setColumn('name', $updateRows[$i]['name']);
-            $entities[$i]->setColumn('email', $updateRows[$i]['email']);
+            $entities[$i]->name = $updateRows[$i]['name'];
+            $entities[$i]->email = $updateRows[$i]['email'];
         }
 
         // Attempt to update the Entity.

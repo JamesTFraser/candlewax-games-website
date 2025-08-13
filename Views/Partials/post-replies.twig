@@ -1,0 +1,6 @@
+{% for reply in replies %}
+    <div {% if indent %} class="ms-5" {% endif %}>
+        {% include 'Partials/post-reply.twig' with {image: reply.post.image, username: reply.post.username, created_at: reply.post.posts_created_at, content: reply.post.content, parent_id: reply.post.posts_id} %}
+        {% if reply.children is not empty %} {% include 'Partials/post-replies.twig' with {replies: reply.children, indent: true} %} {% endif %}
+    </div>
+{% endfor %}

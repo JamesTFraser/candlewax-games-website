@@ -1,0 +1,7 @@
+<div class="float-start me-2">
+    <img width="51" height="51" class="img-fluid" src="/public/images/profile/{{ image }}"/>
+</div>
+<div class="float-start">
+    <h2 class="mb-0"><a class="text-decoration-none" href="/u/{{ username }}">{{ username }}</a></h2>
+    <p>{{ created_at|ago }} {% if session.userId %} &#183; <a class="reply-btn text-decoration-none" data-parent-id="{{ parent_id }}" href="#">Reply</a> {% endif %}</p>
+</div>

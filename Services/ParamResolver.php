@@ -8,6 +8,38 @@ use ReflectionParameter;
 
 class ParamResolver
 {
+    /** @var array An array matching the return types of ReflectionType::getName() with the types returned from
+     * gettype(), where the former is the key and the latter is the value.
+     */
+    private array $typeLookUp = ['string' => 'string', 'int' => 'integer', 'float' => 'double', 'bool' => 'boolean'];
+
+    /**
+     * Attempts to typecast a string into the variable type it represents.
+     *
+     * @param string $value The string to attempt to typecast the value of.
+     * @return mixed The typecast $value.
+     */
+    public function typeCastFromString(string $value): mixed
+    {
+        // If the value is numeric.
+        if (is_numeric($value)) {
+            return str_contains($value, '.') ? (float)$value : (int)$value;
+        }
+
+        $lower = strtolower($value);
+        if ($lower === 'true') {
+            return true;
+        }
+        if ($lower === 'false') {
+            return false;
+        }
+        if ($lower === 'null') {
+            return null;
+        }
+
+        return $value;
+    }
+
     /**
      * Attempts to match the data stored in the $values array to the parameters of the given method.
      *
@@ -64,14 +96,21 @@ class ParamResolver
         // If the parameter required by the action is present in the url, add it to the array.
         if ($isAssoc && array_key_exists($param->name, $values)) {
             $value = $values[$param->name];
-            unset($values[$param->name]);
-            return $value;
+
+            // Check the value's type matches the parameter type and return it if so.
+            if ($this->matchType($param, gettype($value))) {
+                unset($values[$param->name]);
+                return $value;
+            }
+
+            // If the value from the url does not match the parameter's type.
+            return null;
         }
 
         // If the $values array does not contain parameter names.
         if (!$isAssoc && isset($values[0])) {
-            // Remove the first value from the $values array and add it to the end of the $orderedParams array.
-            return array_shift($values);
+            // Return the value if it's type matches the parameter's required type and remove it from the $values array.
+            return $this->matchType($param, gettype($values[0])) ? array_shift($values) : null;
         }
 
         // The parameter could not be satisfied.
@@ -119,5 +158,11 @@ class ParamResolver
 
         // The parameter could not be satisfied.
         return null;
+    }
+
+    private function matchType(ReflectionParameter $parameter, string $matchType): bool
+    {
+        $paramType = $this->typeLookUp[$parameter->getType()->getName()];
+        return strtolower($paramType) === $matchType;
     }
 }

@@ -1,0 +1,26 @@
+{% extends "Layouts/app.twig" %}
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {% include 'Partials/user-tag.twig' with {image: article.image, slug: article.slug, title: article.title, username: article.username, created_at: article.posts_created_at} %}
+        </div>
+    </div>
+    <div class="row row-cols-1 pb-3">
+        <div class="col">
+            <p class="mb-0">{{ article.content }}</p>
+        </div>
+    </div>
+    <h2 class="m-0 pb-2">Replies</h2>
+    {% if session.userId %}
+        <form method="post" action="/discussion/post/storereply">
+            <input type="hidden" name="parent_id" value="{{ article.posts_id }}" />
+            <label for="content" class="form-label text-primary d-none">Reply</label>
+            <textarea id="content" class="form-control border border-primary mb-2" name="content" rows="2"></textarea>
+            {% for error in errors.content %} <p class="text-danger">{{ error }}</p> {% endfor %}
+            <button class="btn btn-primary w-100 mb-2">Reply</button>
+        </form>
+    {% endif %}
+    {% include 'Partials/post-replies.twig' with {replies: replies, indent: false} %}
+    <script src="/Resources/JS/Discussion/Post/reply-button.js"></script>
+    {% include 'Partials/nested-reply-form.twig' %}
+{% endblock %}
