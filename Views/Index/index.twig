@@ -1,17 +1,8 @@
 {% extends "Layouts/app.twig" %}
 {% block content %}
     <div class="row row-cols-1 row-cols-md-3 text-justify">
-        <div class="col">
-            <h2 class="mb-0">Lorem Ipsum Dolor Sit Amet Consectetur Amet Sit</h2>
-            <p class="initial lh-sm m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div class="col">
-            <h2 class="mb-0">Lorem Ipsum Dolor Sit Amet Consectetur Amet Sit</h2>
-            <p class="initial lh-sm m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
-        <div class="col">
-            <h2 class="mb-0">Lorem Ipsum Dolor Sit Amet Consectetur Amet Sit</h2>
-            <p class="initial lh-sm m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        </div>
+        {% include 'Partials/blog-column.twig' with {title: first_post.title, content: first_post.content, slug: '/p/' ~ first_post.slug, image: '/public/images/' ~ first_post.thumbnail, image_alt: first_post.thumbnail_alt } %}
+        {% include 'Partials/blog-column.twig' with {title: game.name, content: game.content, slug: '/games/' ~ game.name, image: '/public/images/games/screenshots/' ~ game_image.slug, image_alt: game_image.alt_text } %}
+        {% include 'Partials/blog-column.twig' with {title: second_post.title, content: second_post.content, slug: '/p/' ~ second_post.slug, image: '/public/images/' ~ second_post.thumbnail, image_alt: second_post.thumbnail_alt} %}
     </div>
 {% endblock %}

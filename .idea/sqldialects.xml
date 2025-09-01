@@ -6,6 +6,9 @@
     <file url="file://$PROJECT_DIR$/Database/SQL/2025-04-06_create_users_table.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/Database/SQL/2025-06-09_create_posts_table.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/Database/SQL/2025-08-06_add_timestamps_to_user_profiles_table.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/Database/SQL/2025-08-17_create_game_screenshots_table.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/Database/SQL/2025-08-17_create_games_table.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/Database/SQL/2025-08-31_add_thumbnail_to_posts.sql" dialect="MariaDB" />
     <file url="PROJECT" dialect="MariaDB" />
   </component>
 </project>
