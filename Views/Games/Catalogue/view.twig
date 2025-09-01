@@ -1,0 +1,14 @@
+{% extends "Layouts/app.twig" %}
+{% block content %}
+    <div class="row pb-3">
+        <div class="col-8">
+            <h2 class="m-0 pb-2">{{ game.name }}</h2>
+            {{ game.content|raw }}
+        </div>
+        <div class="col-4">
+            {% for screenshot in screenshots %}
+                <img class="w-100 mb-1" src="/public/images/games/screenshots/{{ screenshot.slug }}" alt="{{ screenshot.alt_text }}" />
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

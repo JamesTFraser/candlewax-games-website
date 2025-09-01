@@ -6,3 +6,4 @@ vendor/
 composer.phar
 /public/images/profile/*
 !/public/images/profile/.gitkeep
+/public/images/games/

@@ -4,6 +4,7 @@ namespace CandlewaxGames\Bootstrap;
 
 use CandlewaxGames\Controllers\Discussion\BlogController;
 use CandlewaxGames\Controllers\Discussion\PostController;
+use CandlewaxGames\Controllers\Games\CatalogueController;
 use CandlewaxGames\Controllers\Index\IndexController;
 use CandlewaxGames\Controllers\User\ProfileController;
 use CandlewaxGames\Services\ParamResolver;
@@ -28,7 +29,9 @@ class Router
         '/discussion' => [PostController::class, 'indexAction'],
         '/discussion/{pageNumber}' => [PostController::class, 'indexAction'],
         '/blog' => [BlogController::class, 'indexAction'],
-        '/blog/{pageNumber}' => [BlogController::class, 'indexAction']
+        '/blog/{pageNumber}' => [BlogController::class, 'indexAction'],
+        '/games' => [CatalogueController::class, 'indexAction'],
+        '/games/{slug}' => [CatalogueController::class, 'viewAction']
     ];
 
     /**
