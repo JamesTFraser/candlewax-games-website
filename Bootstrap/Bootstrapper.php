@@ -112,7 +112,7 @@ class Bootstrapper
     private function setEnvironment(): void
     {
         // If development environment is on, display errors to the user.
-        if (DEVELOPMENT_ENVIRONMENT) {
+        if (DEVELOPMENT_ENVIRONMENT == false) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
             return;
