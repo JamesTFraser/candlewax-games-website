@@ -150,7 +150,7 @@ class Router
         $urlArray = $this->parseUrl($_SERVER['REQUEST_URI']);
 
         // Set the name space, class and action according to the url.
-        $nameSpace = isset($urlArray[0]) ? strtolower($urlArray[0]) : DEFAULT_MODULE;
+        $nameSpace = isset($urlArray[0]) ? ucwords(strtolower($urlArray[0])) : DEFAULT_MODULE;
         $class = isset($urlArray[1]) ? ucwords(strtolower($urlArray[1])) : 'Index';
         $request['action'] = isset($urlArray[2]) ? strtolower($urlArray[2]) . 'Action' : 'indexAction';
 
