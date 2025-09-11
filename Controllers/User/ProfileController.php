@@ -105,7 +105,7 @@ class ProfileController extends BaseController
         // Create a unique name for the image and move it to the appropriate folder.
         $imageType = $this->validator->getImageType($imagePath);
         $imageName = bin2hex(random_bytes(3)) . time() . '.' . $imageType;
-        $fileUploaded = move_uploaded_file($imagePath, $_SERVER['DOCUMENT_ROOT'] . $this->imagePath . $imageName);
+        $fileUploaded = move_uploaded_file($imagePath, ROOT . $this->imagePath . $imageName);
 
         // Make sure the image was saved correctly.
         if (!$fileUploaded) {
@@ -120,7 +120,7 @@ class ProfileController extends BaseController
     {
         // Retrieve the path to the old profile image.
         $profile = $this->userService->getProfileInfo($_SESSION['username']);
-        $imagePath = $_SERVER['DOCUMENT_ROOT'] . $this->imagePath . $profile['image'];
+        $imagePath = ROOT . $this->imagePath . $profile['image'];
 
         // Make sure we are trying to delete a file and not a directory.
         if ($profile['image'] !== '' && is_file($imagePath)) {
