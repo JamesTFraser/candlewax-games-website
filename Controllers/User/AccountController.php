@@ -187,31 +187,55 @@ class AccountController extends BaseController
         // Validate the form data.
         $valid = $this->validator->validate($data, $rules, $errors);
 
-        // Check if the submitted username and password has changed from the existing ones.
-        $emailChanged = $user && $user->getColumns()['email'] != $data['email'];
-        $nameChanged = $user && $user->getColumns()['username'] != $data['username'];
-
         // If the given username is valid, check that it is not already taken.
-        if (
-            $nameChanged &&
-            !array_key_exists('username', $errors) &&
-            !$this->userService->isUsernameUnique($data['username'])
-        ) {
+        if (!array_key_exists('username', $errors) && !$this->uniqueName($data['username'], $user->username ?? '')) {
             $errors['username'][] = "The username {$data['username']} is already taken.";
             $valid = false;
         }
 
         // Check if the email is unique.
-        if (
-            $emailChanged &&
-            !array_key_exists('email', $errors) &&
-            !$this->userService->isEmailUnique($data['email'])
-        ) {
+        if (!array_key_exists('email', $errors) && !$this->uniqueEmail($data['email'], $user->email ?? '')) {
             $errors['email'][] = "The email {$data['email']} is already taken.";
             $valid = false;
         }
 
         return $valid;
+    }
+
+    /**
+     * Checks if a username is unique.
+     *
+     * @param string $name The username to check against existing ones.
+     * @param string $oldName The user's previous username, if there was one. Assumed to have been previously validated
+     * for uniqueness.
+     * @return bool True if the username is unique.
+     */
+    private function uniqueName(string $name, string $oldName = ''): bool
+    {
+        $nameChanged = $oldName && $oldName != $name || !$oldName;
+
+        if ($nameChanged && !$this->userService->isUsernameUnique($name)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Checks if an email is unique.
+     *
+     * @param string $email The email to check against existing ones.
+     * @param string $oldEmail The user's previous email, if there was one. Assumed to have been previously validated
+     * for uniqueness.
+     * @return bool True if the email is unique.
+     */
+    private function uniqueEmail(string $email, string $oldEmail = ''): bool
+    {
+        $emailChanged = $oldEmail && $oldEmail != $email || !$oldEmail;
+
+        if ($emailChanged && !$this->userService->isEmailUnique($email)) {
+            return false;
+        }
+        return true;
     }
 
     public function logoutAction(): array

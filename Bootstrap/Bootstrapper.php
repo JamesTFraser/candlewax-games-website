@@ -14,6 +14,7 @@ class Bootstrapper
 {
     private DIContainer $diContainer;
     private Database $database;
+    private string $envPath = '../.env';
 
     public function __construct(DIContainer $diContainer, Database $database)
     {
@@ -66,14 +67,14 @@ class Bootstrapper
     private function setEnvVars(): void
     {
         // Make sure the .env file exists in the project root directory.
-        if (!file_exists('.env')) {
+        if (!file_exists($this->envPath)) {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
             throw new Exception('The .env file is missing.');
         }
 
         // Loop through each line of the .env file and register the variables.
-        $envFile = str_replace(' ', '', file_get_contents('.env'));
+        $envFile = str_replace(' ', '', file_get_contents($this->envPath));
         foreach (explode("\n", $envFile) as $envLine) {
             // If the line starts with a # or is blank, ignore it.
             if (str_starts_with($envLine, '#') || strlen($envLine) === 0) {
@@ -89,7 +90,7 @@ class Bootstrapper
      * Defines four constant variables, DEVELOPMENT_ENVIRONMENT, DEFAULT_MODULE, URL and ROOT.
      *
      * The first two are defined by their counterparts in the .env file. The last two are defined by the
-     * $_SERVER['REQUEST_URI'] and $_SERVER['DOCUMENT_ROOT'] respectively.
+     * $_SERVER['REQUEST_URI'] and dirname(__DIR__) respectively.
      *
      * @return void
      */
@@ -98,13 +99,13 @@ class Bootstrapper
         define('DEVELOPMENT_ENVIRONMENT', getenv('DEVELOPMENT_ENVIRONMENT'));
         define('DEFAULT_MODULE', getenv('DEFAULT_MODULE'));
         define('URL', $_SERVER['REQUEST_URI']);
-        define('ROOT', $_SERVER['DOCUMENT_ROOT'] . '/');
+        define('ROOT', dirname(__DIR__) . '/');
     }
 
     /**
      * Defines the current environment (development or production) based on the DEVELOPMENT_ENVIRONMENT .env variable.
      *
-     * In development mode all errors are displayed to the user. In production mode, errors are written to a log file
+     * In development mode, all errors are displayed to the user. In production mode, errors are written to a log file
      * located at /Logs/PHP/error.log.
      *
      * @return void
@@ -112,13 +113,13 @@ class Bootstrapper
     private function setEnvironment(): void
     {
         // If development environment is on, display errors to the user.
-        if (DEVELOPMENT_ENVIRONMENT == false) {
+        if (DEVELOPMENT_ENVIRONMENT !== "false") {
             error_reporting(E_ALL);
             ini_set('display_errors', 'On');
             return;
         }
 
-        // If development environment is off, write errors to an error log.
+        // If the development environment is off, write errors to an error log.
         error_reporting(0);
         ini_set('display_errors', 'Off');
         ini_set('log_errors', 'On');
