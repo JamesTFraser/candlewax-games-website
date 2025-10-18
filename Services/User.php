@@ -80,7 +80,7 @@ class User
         $message = "Thank you for creating an account at candlewax.games. Please verify your email address by clicking
         the following link: <a href=\"https://candlewax.games/user/account/verify/$token\">Verify your email.</a>";
         $this->database->create($this->verifyTable, [0 => ['user_id' => $userId, 'token' => $token]]);
-        $this->mail->send($email, "Verify your email address", $message, 'no-reply@candlewax.games');
+        //$this->mail->send($email, "Verify your email address", $message, 'no-reply@candlewax.games');
     }
 
     public function verifyEmail(string $token): bool

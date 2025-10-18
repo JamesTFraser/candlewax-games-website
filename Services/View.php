@@ -9,6 +9,10 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 use Twig\Extra\String\StringExtension;
+use Twig\Extra\Markdown\MarkdownExtension;
+use Twig\Extra\Markdown\DefaultMarkdown;
+use Twig\Extra\Markdown\MarkdownRuntime;
+use Twig\RuntimeLoader\FactoryRuntimeLoader;
 
 /**
  * Contains the templating engine used to render the views located in the /Views folder.
@@ -36,6 +40,12 @@ class View
         // Resister the extensions.
         $this->engine->addExtension(new TimeAgo());
         $this->engine->addExtension(new StringExtension());
+        $this->engine->addExtension(new MarkdownExtension());
+        $this->engine->addRuntimeLoader(new FactoryRuntimeLoader([
+            MarkdownRuntime::class => function () {
+                return new DefaultMarkdown();
+            },
+        ]));
     }
 
     /**

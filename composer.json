@@ -13,7 +13,9 @@
     "twig/twig": "3.*",
     "ext-fileinfo": "*",
     "twig/string-extra": "^3.21",
-    "ext-iconv": "*"
+    "ext-iconv": "*",
+    "twig/markdown-extra": "^3.21",
+    "league/commonmark": "^2.7"
   },
   "autoload": {
     "psr-4": {
