@@ -3,7 +3,7 @@
     <div class="clearfix mb-2">
         <div class="float-end">{% include 'Partials/pagination.twig' with {url: "/blog", page_count: page_count, current_page: current_page, page_number: page_number} %}</div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 text-justify">
+    <div class="row row-cols-1 row-cols-md-3 text-justify blog-list">
         {% for post in posts %}
             {% include 'Partials/blog-column.twig' with {title: post.title, content: post.content, slug: '/p/' ~ post.slug} %}
         {% endfor %}
