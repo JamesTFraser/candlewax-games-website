@@ -23,9 +23,8 @@ class CatalogueController extends BaseController
         // Retrieve one screenshot per game to use as a thumbnail.
         $thumbnails = [];
         foreach ($games as $game) {
-            $thumbnails[] = $this->gamesService->getScreenshots(['id' => $game->id])[0];
+            $thumbnails[] = $this->gamesService->getScreenshots(['game_id' => $game->id])[0];
         }
-
         return $this->response->render('Games/Catalogue/index', ['games' => $games, 'thumbnails' => $thumbnails]);
     }
 

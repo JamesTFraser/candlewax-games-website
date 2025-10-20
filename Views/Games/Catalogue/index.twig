@@ -4,9 +4,9 @@
         <h2 class="float-start fs-2 me-2">Games</h2>
     </div>
     {% for game in games %}
-        <div class="row row-cols-1 pb-3 {% if (loop.index is even) %} bg-light {% endif %}">
+        <div class="row row-cols-1 pb-3">
             <div class="col-md-3">
-                <img class="w-100" src="/images/games/screenshots/{{ thumbnails[loop.index0].slug }}" alt="{{ screenshot.alt_text }}" />
+                <img class="w-100" src="/images/games/screenshots/{{ thumbnails[loop.index0].slug }}" title="{{ thumbnails[loop.index0].title }}" alt="{{ thumbnails[loop.index0].alt_text }}" />
             </div>
             <div class="col-md-9">
                 <h2 class="mb-0"><a class="text-decoration-none" href="/games/{{ game.slug }}">{{ game.name }}</a></h2>

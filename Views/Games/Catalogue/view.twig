@@ -7,7 +7,7 @@
         </div>
         <div class="col-4">
             {% for screenshot in screenshots %}
-                <img class="w-100 mb-1" src="/images/games/screenshots/{{ screenshot.slug }}" alt="{{ screenshot.alt_text }}" />
+                <img class="w-100 mb-1" src="/images/games/screenshots/{{ screenshot.slug }}" title="{{ screenshot.title }}" alt="{{ screenshot.alt_text }}" />
             {% endfor %}
         </div>
     </div>

@@ -6,8 +6,8 @@
         </div>
     </div>
     <div class="row row-cols-1 pb-3">
-        <div class="col">
-            <p class="mb-0">{{ article.content|markdown_to_html }}</p>
+        <div class="col blog-content">
+            {{ article.content|markdown_to_html }}
         </div>
     </div>
     <h2 class="m-0 pb-2">Replies</h2>

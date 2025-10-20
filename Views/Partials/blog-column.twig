@@ -1,5 +1,5 @@
-<div class="col">
+<div class="col blog-column">
     <h2 class="mb-0"><a class="text-decoration-none" href="{{ slug }}">{{ title }}</a></h2>
     {% if image %}<img class="w-100 mb-2" src="{{ image }}" alt="{{ image_alt }}" />{% endif %}
-    <p class="initial lh-sm m-0">{{ content|striptags|u.truncate(230, '...', false) }}</p>
+    <p class="initial lh-sm m-0">{{ content|striptags|u.truncate(230, '...', false)|markdown_to_html }}</p>
 </div>

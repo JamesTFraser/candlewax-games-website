@@ -17,7 +17,7 @@
         </div>
         <div class="row row-cols-1 pb-3 {% if (loop.index is even) %} bg-light {% endif %}">
             <div class="col">
-                <p class="mb-0">{{ post.content|u.truncate(250, '...', false) }}</p>
+                <p class="mb-0">{{ post.content|u.truncate(250, '...', false)|markdown_to_html }}</p>
             </div>
         </div>
     {% endfor %}

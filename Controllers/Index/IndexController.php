@@ -12,7 +12,7 @@ use CandlewaxGames\Services\Response;
  */
 class IndexController extends BaseController
 {
-    private int $firstFeaturedPostId = 1;
+    private int $firstFeaturedPostId = 11;
     private int $secondFeaturedPostId = 2;
     private int $featuredGameId = 1;
     private Post $postService;
